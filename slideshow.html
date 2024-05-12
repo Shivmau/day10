@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #cont{
+        width: 100%;
+        margin: auto;
+       border: 2px solid red;
+       height: 500px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+#cont img{
+    width: 40%;
+}
+
+#button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px
+}
+#button button{
+    width: 80px;
+    margin-top: 10px;
+    height: 30px;
+}
+    
+</style>
+<body>
+    <div id="cont">
+    
+    </div>
+    <div id="button">
+    <button onclick="start()">start</button>
+    <button onclick="stop()">stop</button>
+    <button onclick="next()">Next</button>
+    <button onclick="previous()">Previous</button>
+    </div>
+</body>
+
+<script>
+    let srcArr=[
+        "https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1379636/pexels-photo-1379636.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/36762/scarlet-honeyeater-bird-red-feathers.jpg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1042423/pexels-photo-1042423.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/21492/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/207088/pexels-photo-207088.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/534164/pexels-photo-534164.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1139556/pexels-photo-1139556.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/707837/pexels-photo-707837.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1131774/pexels-photo-1131774.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1028637/pexels-photo-1028637.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1024967/pexels-photo-1024967.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/639086/pexels-photo-639086.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/534049/pexels-photo-534049.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg?auto=compress&cs=tinysrgb&w=300",
+    ]
+    let i=0;
+    let intervalId;
+    
+    function displayImg(index){
+        let cont=document.getElementById("cont");
+        cont.innerHTML="";
+        let img=document.createElement("img");
+       
+        img.src=srcArr[index]
+      
+        cont.append(img)
+    }
+  
+    
+    function start(){
+        
+        intervalId= setInterval(()=>{
+        displayImg(i)
+        i++
+        if(i==srcArr.length){
+            i=0;
+        }
+       
+        },2000)
+        
+    }
+
+
+    function stop(){
+        clearInterval(intervalId)
+        intervalId=null;
+    }
+
+
+
+    function next(){
+        displayImg(++i)
+        if(i==srcArr.length-1){
+            
+            i=0;
+        }
+    }
+
+
+    function previous(){
+        displayImg(--i)
+      if(i==0){
+        i=srcArr.length-1;
+      }
+    }
+</script>
+</html>
