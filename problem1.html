@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #stopwatch{
+        text-align: center;
+    }
+
+    #display{
+        background-color:rgb(216, 242, 247);
+       font-size: 50px;
+       color:rgb(78, 91, 235);
+       border: 2px solid black;
+       width: 30%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: auto;
+       height: 70px;
+       border-radius: 10px;
+    }
+    #button>button{
+       margin-top: 30px;
+       height: 50px;
+       width: 80px;
+       font-size: 20px;
+       border-radius: 10px;
+    }
+</style>
+<body>
+    <div id="stopwatch">
+        <h1>Stopwatch</h1>
+        <div id="display">00:00</div>
+        <div id="button">
+            <button id="startBtn">Start</button>
+            <button id="pauseBtn">Pause</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+    <script>
+
+        let timer;
+        let seconds=0;
+
+
+        let container=document.getElementById("display")
+        let startBtn=document.getElementById("startBtn")
+        let pausetBtn=document.getElementById("pauseBtn")
+        let ResetBtn=document.getElementById("resetBtn")
+
+        startBtn.addEventListener("click" , startTimer)
+        pausetBtn.addEventListener("click", pauseTimer)
+        ResetBtn.addEventListener("click", resetTimer)
+
+        function startTimer(){
+            timer=setInterval(updateTimer,1000)
+            startBtn.disabled=true;
+            pausetBtn.disabled=false;
+        }
+
+        function updateTimer(){
+            seconds++
+            let displayMinutes=Math.floor(seconds/60)
+            let displaySeconds=seconds%60;
+
+            container.textContent=displayMinutes.toString().padStart(2,"0")+":"+displaySeconds.toString().padStart(2,"0")
+        }   
+
+
+        function pauseTimer(){
+            clearInterval(timer);
+            startBtn.disabled=false;
+            pausetBtn.disabled=true
+        }
+
+        function resetTimer(){
+            clearInterval(timer)
+            seconds=0;
+            container.textContent="00:00"
+            
+            pausetBtn.disabled=false;
+            startBtn.disabled=false;
+        }
+
+
+    </script>
+</body>
+</html>
